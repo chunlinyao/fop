@@ -38,6 +38,7 @@ import org.apache.fop.datatypes.Length;
 import org.apache.fop.datatypes.PercentBaseContext;
 import org.apache.fop.fo.FONode;
 import org.apache.fop.fo.flow.BlockContainer;
+import org.apache.fop.fo.flow.ListItem;
 import org.apache.fop.fo.properties.CommonAbsolutePosition;
 import org.apache.fop.fo.properties.CommonBorderPaddingBackground;
 import org.apache.fop.fo.properties.CommonFont;
@@ -1164,22 +1165,25 @@ public class BlockContainerLayoutManager extends SpacedBorderedPaddedBlockLayout
                     CommonFont newFont = commonFont.derive(new ScaleLength(commonFont.getFontSize(), scale));
                     block.setCommonFont(newFont);
                     block.setLineHeight(block.getLineHeight().scale(scale));
-                    reduceFontSize(block, scale);
                 }
                 if (curNode instanceof org.apache.fop.fo.flow.InlineLevel) {
                     org.apache.fop.fo.flow.InlineLevel block = (org.apache.fop.fo.flow.InlineLevel) curNode;
                     CommonFont commonFont = block.getCommonFont();
                     CommonFont newFont = commonFont.derive(new ScaleLength(commonFont.getFontSize(), scale));
                     block.setCommonFont(newFont);
-                    reduceFontSize(block, scale);
                 }
                 if (curNode instanceof org.apache.fop.fo.FOText) {
                     org.apache.fop.fo.FOText block = (org.apache.fop.fo.FOText) curNode;
                     CommonFont commonFont = block.getCommonFont();
                     CommonFont newFont = commonFont.derive(new ScaleLength(commonFont.getFontSize(), scale));
                     block.setCommonFont(newFont);
-                    reduceFontSize(block, scale);
                 }
+                if (curNode instanceof ListItem) {
+                    ListItem listItem = (ListItem) curNode;
+                    reduceFontSize(listItem.getLabel(), scale);
+                    reduceFontSize(listItem.getBody(), scale);
+                }
+                reduceFontSize(curNode, scale);
             }
         }
     }
