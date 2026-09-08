@@ -44,6 +44,22 @@
           <fo:block-container id="noshrinkabs" position="absolute" fox:shrink-to-fit="false" width="240pt" height="20pt" background-color="lightgray" space-after="5pt">
             <fo:block start-indent="5pt" end-indent="5pt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque hendrerit euismod velit. Nulla facilisi. Etiam et risus at neque ultrices facilisis. Donec lectus est, nonummy quis, rhoncus bibendum, porta at, nisl.</fo:block>
           </fo:block-container>
+          <fo:block-container id="shrinklist" fox:shrink-to-fit="true" width="240pt" height="20pt" background-color="lightgray" space-after="5pt">
+            <fo:list-block provisional-distance-between-starts="20pt" provisional-label-separation="5pt">
+              <fo:list-item>
+                <fo:list-item-label><fo:block>1.</fo:block></fo:list-item-label>
+                <fo:list-item-body><fo:block>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque hendrerit euismod velit. Nulla facilisi. Etiam et risus at neque ultrices facilisis.</fo:block></fo:list-item-body>
+              </fo:list-item>
+            </fo:list-block>
+          </fo:block-container>
+          <fo:block-container id="noshrinklist" fox:shrink-to-fit="false" width="240pt" height="20pt" background-color="lightgray" space-after="5pt">
+            <fo:list-block provisional-distance-between-starts="20pt" provisional-label-separation="5pt">
+              <fo:list-item>
+                <fo:list-item-label><fo:block>1.</fo:block></fo:list-item-label>
+                <fo:list-item-body><fo:block>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque hendrerit euismod velit. Nulla facilisi. Etiam et risus at neque ultrices facilisis.</fo:block></fo:list-item-body>
+              </fo:list-item>
+            </fo:list-block>
+          </fo:block-container>
         </fo:flow>
       </fo:page-sequence>
     </fo:root>
@@ -53,5 +69,7 @@
     <true xpath="//block[@prod-id='noshrink' and @is-viewport-area='true']/block/@bpd &gt;20000"/>
     <true xpath="//block[@prod-id='shrinkabs' and @is-viewport-area='true']/block/@bpd &lt;=20000"/>
     <true xpath="//block[@prod-id='noshrinkabs' and @is-viewport-area='true']/block/@bpd &gt;20000"/>
+    <true xpath="//block[@prod-id='shrinklist' and @is-viewport-area='true']/block/@bpd &lt;=20000"/>
+    <true xpath="//block[@prod-id='noshrinklist' and @is-viewport-area='true']/block/@bpd &gt;20000"/>
   </checks>
 </testcase>
